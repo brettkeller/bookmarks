@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>Tab & Bookmark Organizer</h1>
+      <div id="steps">
+        <span class="step active" data-step="scan">1. Scan</span>
+        <span class="step" data-step="export">2. Export</span>
+        <span class="step" data-step="organize">3. Organize</span>
+        <span class="step" data-step="apply">4. Apply</span>
+      </div>
+    </header>
+
+    <!-- Step 1: Scan -->
+    <section id="scan-section" class="section active">
+      <p>Scan your open tabs and Chrome bookmarks.</p>
+      <button id="btn-scan" class="primary">Scan Tabs &amp; Bookmarks</button>
+      <div id="scan-progress" class="progress hidden">
+        <div class="progress-bar"><div class="progress-fill" id="scan-fill"></div></div>
+        <p id="scan-status">Scanning...</p>
+      </div>
+      <div id="scan-results" class="hidden">
+        <div class="stat-row">
+          <div class="stat"><span id="tab-count">0</span> Tabs</div>
+          <div class="stat"><span id="group-count">0</span> Tab Groups</div>
+          <div class="stat"><span id="bookmark-count">0</span> Bookmarks</div>
+          <div class="stat"><span id="dupe-count">0</span> Duplicates</div>
+        </div>
+        <div id="tabs-preview" class="preview-box">
+          <h3>Open Tabs <span class="badge" id="tabs-badge">0</span></h3>
+          <div class="table-wrap">
+            <table id="tabs-table">
+              <thead><tr><th>Title</th><th>URL</th><th>Group</th><th>Summary</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <div id="bookmarks-preview" class="preview-box">
+          <h3>Bookmarks <span class="badge" id="bookmarks-badge">0</span></h3>
+          <div class="table-wrap">
+            <table id="bookmarks-table">
+              <thead><tr><th>Title</th><th>URL</th><th>Folder</th><th>Summary</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <div id="dupes-preview" class="preview-box hidden">
+          <h3>Duplicates Found <span class="badge" id="dupes-badge">0</span></h3>
+          <div class="table-wrap">
+            <table id="dupes-table">
+              <thead><tr><th>Title</th><th>URL</th><th>Found In</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <button id="btn-to-export" class="primary">Next: Export &rarr;</button>
+      </div>
+    </section>
+
+    <!-- Step 2: Export -->
+    <section id="export-section" class="section">
+      <p>Download spreadsheets of your tabs and bookmarks.</p>
+      <div class="button-row">
+        <button id="btn-export-tabs" class="secondary">Download Tabs CSV</button>
+        <button id="btn-export-bookmarks" class="secondary">Download Bookmarks CSV</button>
+        <button id="btn-export-merged" class="secondary">Download Merged CSV</button>
+      </div>
+      <div id="export-done" class="hidden">
+        <p class="success">CSV downloaded.</p>
+      </div>
+      <button id="btn-to-organize" class="primary">Next: Organize &rarr;</button>
+    </section>
+
+    <!-- Step 3: Organize -->
+    <section id="organize-section" class="section">
+      <p>Review the suggested bookmark organization. Frequently accessed pages go into quick-access folders. Others are categorized (max 2 levels deep).</p>
+      <button id="btn-generate-org" class="primary">Generate Organization</button>
+      <div id="org-progress" class="progress hidden">
+        <div class="progress-bar"><div class="progress-fill" id="org-fill"></div></div>
+        <p id="org-status">Analyzing visit frequency...</p>
+      </div>
+      <div id="org-results" class="hidden">
+        <div class="tree-container" id="org-tree"></div>
+        <div class="legend">
+          <span class="legend-item"><span class="dot green"></span> New</span>
+          <span class="legend-item"><span class="dot blue"></span> Moved</span>
+          <span class="legend-item"><span class="dot gray"></span> Unchanged</span>
+          <span class="legend-item"><span class="dot red"></span> Removed (dupe)</span>
+        </div>
+        <button id="btn-to-apply" class="primary">Next: Preview &amp; Apply &rarr;</button>
+      </div>
+    </section>
+
+    <!-- Step 4: Apply -->
+    <section id="apply-section" class="section">
+      <h3>Apply Changes</h3>
+      <p>Before making any changes, a full backup of your bookmarks will be exported as an HTML file you can re-import at any time via <code>chrome://bookmarks</code> &rarr; Import.</p>
+      <div class="apply-options">
+        <button id="btn-backup" class="secondary">1. Download Backup</button>
+        <span id="backup-status" class="status-label"></span>
+      </div>
+      <div class="apply-options">
+        <button id="btn-apply" class="primary" disabled>2. Apply Organization</button>
+        <span id="apply-status" class="status-label"></span>
+      </div>
+      <div id="apply-done" class="hidden">
+        <p class="success">Bookmarks reorganized! You can undo by importing the backup HTML file.</p>
+      </div>
+      <div class="apply-options">
+        <button id="btn-undo" class="danger hidden">Undo All Changes</button>
+        <span id="undo-status" class="status-label"></span>
+      </div>
+    </section>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

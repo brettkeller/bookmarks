@@ -1,0 +1,150 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  width: 720px;
+  max-height: 580px;
+  overflow-y: auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  color: #1a1a1a;
+  background: #f8f9fa;
+}
+
+#app { padding: 16px; }
+
+header { margin-bottom: 16px; }
+h1 { font-size: 16px; font-weight: 600; margin-bottom: 10px; }
+h3 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+
+/* Step indicators */
+#steps { display: flex; gap: 4px; }
+.step {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  background: #e8eaed;
+  color: #5f6368;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.step.active { background: #4285f4; color: #fff; }
+.step.done { background: #34a853; color: #fff; }
+
+/* Sections */
+.section { display: none; }
+.section.active { display: block; }
+
+/* Buttons */
+button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+.primary { background: #4285f4; color: #fff; }
+.primary:hover:not(:disabled) { background: #3367d6; }
+.secondary { background: #e8eaed; color: #1a1a1a; }
+.secondary:hover { background: #dadce0; }
+.danger { background: #ea4335; color: #fff; }
+.danger:hover { background: #c5221f; }
+
+.button-row { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+
+/* Progress */
+.progress { margin: 12px 0; }
+.progress-bar {
+  height: 4px;
+  background: #e8eaed;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: #4285f4;
+  border-radius: 2px;
+  transition: width 0.3s;
+}
+#scan-status, #org-status { font-size: 12px; color: #5f6368; margin-top: 4px; }
+
+/* Stats */
+.stat-row { display: flex; gap: 12px; margin: 12px 0; }
+.stat {
+  background: #fff;
+  border: 1px solid #e8eaed;
+  border-radius: 8px;
+  padding: 10px 14px;
+  text-align: center;
+  flex: 1;
+}
+.stat span { display: block; font-size: 22px; font-weight: 700; color: #4285f4; }
+
+/* Tables */
+.preview-box { margin: 12px 0; }
+.table-wrap {
+  max-height: 180px;
+  overflow: auto;
+  border: 1px solid #e8eaed;
+  border-radius: 6px;
+  background: #fff;
+}
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+thead { position: sticky; top: 0; background: #f1f3f4; z-index: 1; }
+th { text-align: left; padding: 6px 8px; font-weight: 600; color: #5f6368; border-bottom: 1px solid #e8eaed; }
+td { padding: 5px 8px; border-bottom: 1px solid #f1f3f4; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+tr:hover td { background: #f8f9fa; }
+
+.badge {
+  background: #e8eaed;
+  color: #5f6368;
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: 8px;
+  font-weight: 500;
+  margin-left: 4px;
+}
+
+/* Tree view */
+.tree-container {
+  background: #fff;
+  border: 1px solid #e8eaed;
+  border-radius: 6px;
+  padding: 12px;
+  max-height: 300px;
+  overflow: auto;
+  margin: 12px 0;
+  font-size: 12px;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  line-height: 1.6;
+}
+.tree-folder { font-weight: 600; }
+.tree-folder::before { content: '\1F4C1 '; }
+.tree-item::before { content: '\1F517 '; }
+.tree-indent { padding-left: 20px; }
+.tree-new { color: #34a853; }
+.tree-moved { color: #4285f4; }
+.tree-unchanged { color: #9aa0a6; }
+.tree-removed { color: #ea4335; text-decoration: line-through; }
+
+/* Legend */
+.legend { display: flex; gap: 14px; margin: 8px 0; font-size: 11px; color: #5f6368; }
+.legend-item { display: flex; align-items: center; gap: 4px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.dot.green { background: #34a853; }
+.dot.blue { background: #4285f4; }
+.dot.gray { background: #9aa0a6; }
+.dot.red { background: #ea4335; }
+
+/* Apply section */
+.apply-options { display: flex; align-items: center; gap: 10px; margin: 10px 0; }
+.status-label { font-size: 12px; color: #5f6368; }
+
+.success { color: #34a853; font-weight: 500; margin: 8px 0; }
+code { background: #f1f3f4; padding: 1px 4px; border-radius: 3px; font-size: 12px; }
+
+.hidden { display: none !important; }
